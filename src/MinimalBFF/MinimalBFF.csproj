@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Paramore.Darker" Version="2.0.78" />
+    <PackageReference Include="Paramore.Darker.AspNetCore" Version="2.0.78" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Domain\Handlers" />
+  </ItemGroup>
+
+</Project>
