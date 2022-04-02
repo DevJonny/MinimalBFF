@@ -1,0 +1,11 @@
+{
+    "rest-client.environmentVariables": {
+        "$shared": {
+        },
+        "local": {
+            "apiKey": "your_api_key",
+            "lon": "51.5072",
+            "lat": "0.1276"
+        }
+    }
+}

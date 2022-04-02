@@ -1,0 +1,2 @@
+GET https://localhost:7242/weather?city=London&country=uk
+Content-Type: application/json

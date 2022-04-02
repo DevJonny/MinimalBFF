@@ -13,6 +13,7 @@
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "applicationUrl": "https://localhost:7242;http://localhost:5232",
+      "launchUrl": "weather?city=London&country=uk",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

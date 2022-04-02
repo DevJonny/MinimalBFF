@@ -11,8 +11,4 @@
     <PackageReference Include="Paramore.Darker.AspNetCore" Version="2.0.78" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Domain\Handlers" />
-  </ItemGroup>
-
 </Project>
