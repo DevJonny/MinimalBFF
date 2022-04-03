@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Paramore.Darker" Version="2.0.78" />
     <PackageReference Include="Paramore.Darker.AspNetCore" Version="2.0.78" />
   </ItemGroup>
 
