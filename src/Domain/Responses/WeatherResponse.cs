@@ -9,4 +9,7 @@ public class WeatherResponse : IWeatherResponse
     
     [JsonIgnore]
     public IResult Result { get; set; }
+    
+    [JsonIgnore]
+    public string Error { get; set; }
 }

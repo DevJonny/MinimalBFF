@@ -4,7 +4,6 @@ using MinimalBFF.Ports;
 using MinimalBFF.Ports.Attributes;
 using MinimalBFF.Ports.Services;
 using Paramore.Darker.AspNetCore;
-using Weather = MinimalBFF.Ports.Weather;
 
 namespace MinimalBFF;
 
@@ -13,9 +12,11 @@ public static class ServiceExtensions
     public static void AddConfig(this WebApplicationBuilder webApplicationBuilder)
     {
         var weatherSection = webApplicationBuilder.Configuration.GetSection("Weather");
-        var config = new Config(new Weather(weatherSection["ApiKey"]));
+        var weatherConfig = new WeatherConfig(weatherSection["ApiKey"]);
+        var config = new Config(weatherConfig);
 
         webApplicationBuilder.Services.AddSingleton(config);
+        webApplicationBuilder.Services.AddSingleton(weatherConfig);
     }
     
     public static void ConfigureDarker(this WebApplicationBuilder webApplicationBuilder)

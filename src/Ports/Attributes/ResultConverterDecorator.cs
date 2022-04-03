@@ -21,9 +21,11 @@ public class ResultConverterDecorator<TQuery, TResult> : IQueryHandlerDecorator<
     public async Task<TResult> ExecuteAsync(TQuery query, Func<TQuery, CancellationToken, Task<TResult>> next, Func<TQuery, CancellationToken, Task<TResult>> fallback,
         CancellationToken cancellationToken = new())
     {
+        TResult result = null;
+        
         try
         {
-            var result = await next(query, cancellationToken);
+            result = await next(query, cancellationToken);
 
             if (result is not IWeatherResponse weatherResponse)
                 return result;
@@ -37,9 +39,9 @@ public class ResultConverterDecorator<TQuery, TResult> : IQueryHandlerDecorator<
 
             return result;
         }
-        catch (ValidationException)
+        catch (ValidationException e)
         {
-            var weatherResponse = new WeatherResponse {Result = Results.BadRequest()};
+            var weatherResponse = new WeatherResponse { Result = Results.BadRequest(e.Message) };
             return weatherResponse as TResult;
         }
         catch (HttpRequestException e)
@@ -50,6 +52,7 @@ public class ResultConverterDecorator<TQuery, TResult> : IQueryHandlerDecorator<
                 {
                     HttpStatusCode.NotFound => Results.NotFound(),
                     HttpStatusCode.Unauthorized => Results.Unauthorized(),
+                    HttpStatusCode.BadRequest => Results.BadRequest(),
                     _ => throw new AggregateException()
                 }
             };

@@ -1,2 +1,2 @@
 # @name GetWithLatLon
-GET https://api.openweathermap.org/data/2.5/onecall?lon={{lon}}&lat={{lat}}&appid={{apiKey}}
+GET https://api.openweathermap.org/data/2.5/onecall?lon={{lon}}&appid={{apiKey}}
