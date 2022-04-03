@@ -1,2 +1,2 @@
-GET https://localhost:7242/weather?city=London&country=uk
+GET https://localhost:7242/weather?lat={{lat}}&lon={{lon}}
 Content-Type: application/json

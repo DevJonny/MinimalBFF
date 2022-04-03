@@ -1,9 +1,9 @@
-using MinimalBFF.Adapters.OpenWeatherMap;
+using MinimalBFF.Domain.Responses;
 using MinimalBFF.Ports.Requests;
 
 namespace MinimalBFF.Ports.Services;
 
 public interface IWeatherService
 {
-    Task<HttpResponseMessage> GetWeather(WeatherRequest weatherRequest);
+    Task<IWeatherResponse> GetWeather(WeatherRequest weatherRequest);
 }

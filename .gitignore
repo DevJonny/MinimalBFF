@@ -351,8 +351,10 @@ MigrationBackup/
 
 # OSX
 **/.DS_STORE/*
-.DS_STORE/
+.DS_STORE
+src/.DS_STORE
 
 # Rider
 .idea/
+src/MinimalBFF/.idea
 

@@ -1,10 +1,12 @@
-using System.Net;
+using System.Text.Json.Serialization;
 
 namespace MinimalBFF.Domain.Responses;
 
 public class WeatherResponse : IWeatherResponse
 {
-    public HttpStatusCode StatusCode { get; init; }
-    public object Data { get; init; }
+    public string Forecast { get; set; }
+    public double Temp { get; set; }
+    
+    [JsonIgnore]
     public IResult Result { get; set; }
 }

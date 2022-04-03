@@ -23,15 +23,12 @@ public static class ServiceExtensions
         webApplicationBuilder.Services
             .AddDarker()
             .AddHandlersFromAssemblies(typeof(GetWeatherHandler).Assembly)
-            .RegisterDecorator(typeof(HttpStatusToResultConverterDecorator<,>));
+            .RegisterDecorator(typeof(ResultConverterDecorator<,>));
     }
 
     public static void ConfigureWeatherService(this WebApplicationBuilder webApplicationBuilder)
     {
         webApplicationBuilder.Services
-            .AddHttpClient<IWeatherService, WeatherService>(client =>
-            {
-                client.BaseAddress = new Uri("https://api.openweathermap.org/data/2.5/weather?");
-            });
+            .AddHttpClient<IWeatherService, OpenWeatherMapService>();
     }
 }

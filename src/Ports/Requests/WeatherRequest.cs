@@ -3,14 +3,14 @@ using Paramore.Darker;
 
 namespace MinimalBFF.Ports.Requests;
 
-public class WeatherRequest : IQuery<WeatherResponse>
+public class WeatherRequest : IQuery<IWeatherResponse>
 {
-    public string City { get; }
-    public string Country { get; }
+    public float? Lat { get; }
+    public float? Lon { get; }
 
-    public WeatherRequest(string city, string country)
+    public WeatherRequest(float? lat, float? lon)
     {
-        City = city;
-        Country = country;
+        Lat = lat;
+        Lon = lon;
     }
 }

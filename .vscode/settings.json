@@ -3,9 +3,9 @@
         "$shared": {
         },
         "local": {
-            "apiKey": "your_api_key",
-            "lon": "51.5072",
-            "lat": "0.1276"
+            "apiKey": "replace_with_your_api_key",
+            "lat": "51.5072",
+            "lon": "0.1276",
         }
     }
 }

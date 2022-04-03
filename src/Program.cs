@@ -10,7 +10,7 @@ builder.ConfigureWeatherService();
     
 var app = builder.Build();
 
-app.MapGet("/weather", ([FromQuery] string city, [FromQuery] string country, [FromServices] IQueryProcessor queryProcessor) 
-        => queryProcessor.ExecuteAsync(new WeatherRequest(city, country)).Result);
+app.MapGet("/weather", async ([FromQuery] float? lon, [FromQuery] float? lat, [FromServices] IQueryProcessor queryProcessor) 
+        => (await queryProcessor.ExecuteAsync(new WeatherRequest(lon, lat))).Result);
 
 app.Run();

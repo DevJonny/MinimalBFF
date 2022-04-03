@@ -1,1 +1,2 @@
-GET https://api.openweathermap.org/data/2.5/onecall?lat={{lat}}&lon={{lon}}&appid={{apiKey}}
+# @name GetWithLatLon
+GET https://api.openweathermap.org/data/2.5/onecall?lon={{lon}}&lat={{lat}}&appid={{apiKey}}

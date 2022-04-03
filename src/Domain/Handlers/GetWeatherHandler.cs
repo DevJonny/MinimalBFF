@@ -1,4 +1,4 @@
-using MinimalBFF.Adapters.OpenWeatherMap;
+using System.ComponentModel.DataAnnotations;
 using MinimalBFF.Domain.Responses;
 using MinimalBFF.Ports.Attributes;
 using MinimalBFF.Ports.Requests;
@@ -7,7 +7,7 @@ using Paramore.Darker;
 
 namespace MinimalBFF.Domain.Handlers;
 
-public class GetWeatherHandler : QueryHandlerAsync<WeatherRequest, WeatherResponse>
+public class GetWeatherHandler : QueryHandlerAsync<WeatherRequest, IWeatherResponse>
 {
     private readonly IWeatherService _weatherService;
 
@@ -16,16 +16,16 @@ public class GetWeatherHandler : QueryHandlerAsync<WeatherRequest, WeatherRespon
         _weatherService = weatherService;
     }
 
-    [HttpStatusToResultConverter.HttpStatusToResultConverterAttribute(1)]
-    public override async Task<WeatherResponse> ExecuteAsync(WeatherRequest query, CancellationToken cancellationToken = new())
+    [ResultConverter(1)]
+    public override async Task<IWeatherResponse> ExecuteAsync(WeatherRequest query, CancellationToken cancellationToken = new())
     {
-        var weatherResponse = await _weatherService.GetWeather(new WeatherRequest(query.City, query.Country));
-        var openWeatherData = await weatherResponse.Content.ReadFromJsonAsync<OpenWeatherMapResponse>(cancellationToken: cancellationToken);
+        var (lon, lat) = (query.Lon, query.Lat);
 
-        return new WeatherResponse
-        {
-            StatusCode = weatherResponse.StatusCode,
-            Data = openWeatherData
-        };
+        if (lon is null || lat is null)
+            throw new ValidationException("Lon and Lat must not be null");
+        
+        var weatherResponse = await _weatherService.GetWeather(new WeatherRequest(lon, lat));
+
+        return weatherResponse;
     }
 }
