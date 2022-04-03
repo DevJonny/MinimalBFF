@@ -7,7 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.AddConfig();
 builder.ConfigureDarker();
 builder.ConfigureWeatherService();
-    
+builder.ConfigureKestrel();
+
 var app = builder.Build();
 
 app.MapGet("/weather", async ([FromQuery] float? lon, [FromQuery] float? lat, [FromServices] IQueryProcessor queryProcessor) 

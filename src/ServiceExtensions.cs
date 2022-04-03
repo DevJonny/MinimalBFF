@@ -32,4 +32,10 @@ public static class ServiceExtensions
         webApplicationBuilder.Services
             .AddHttpClient<IWeatherService, OpenWeatherMapService>();
     }
+
+    public static void ConfigureKestrel(this WebApplicationBuilder webApplicationBuilder)
+    {
+        webApplicationBuilder.WebHost
+            .ConfigureKestrel(options => options.AddServerHeader = false);
+    }
 }
